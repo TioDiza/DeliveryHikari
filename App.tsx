@@ -7,7 +7,7 @@ import Cart from './components/Cart';
 import FireSparks from './components/FireSparks';
 import useInView from './src/hooks/useInView';
 import { supabase } from './src/integrations/supabase/client';
-import PixDisplay from './components/PixDisplay';
+import PixDisplay from './src/components/PixDisplay';
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>(CategoryType.BURGER);
