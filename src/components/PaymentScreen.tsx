@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { CartItem } from '../types';
+import { CartItem } from '../../types';
 import QRCode from 'qrcode';
-import { SHIPPING_FEE } from '../constants';
+import { SHIPPING_FEE } from '../../constants';
 
 interface PaymentScreenProps {
   orderItems: CartItem[];
