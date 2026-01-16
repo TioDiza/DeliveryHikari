@@ -33,7 +33,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Burger 180g, creme de gorgonzola, nozes caramelizadas e rúcula fresca no pão australiano.',
     price: 41.90,
     category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1626082896498-404c3a923632?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1603614502396-1c3e4a48182c?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'b5',
@@ -49,7 +49,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Burger 180g, queijo pepper jack, guacamole artesanal, pimenta jalapeño e nachos.',
     price: 39.90,
     category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1598603323243-5f897a1204d2?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1625575332992-39837a6979d2?q=80&w=800&auto=format&fit=crop',
     badge: 'Apimentado'
   },
   {
@@ -58,7 +58,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Burger de costela 200g, costela desfiada no barbecue, queijo provolone e cebola crispy.',
     price: 48.90,
     category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1604467707321-70d5ac45853b?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1627907222043-9c1a4d0f6e65?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'b8',
@@ -122,7 +122,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Burger 150g, queijo prato, ovo frito com gema mole, bacon e alface.',
     price: 36.90,
     category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1565062209392-253696f43a60?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1551984319-05a81d9b6a5a?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'b16',
@@ -138,7 +138,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Burger de cordeiro 180g, queijo feta, tomate seco, azeitonas pretas e molho de iogurte com hortelã.',
     price: 47.50,
     category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1631051714255-80e1f0438f23?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1605789534313-b161d33a7543?q=80&w=800&auto=format&fit=crop'
   },
   // PIZZAS
   {
