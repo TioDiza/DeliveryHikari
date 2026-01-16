@@ -9,6 +9,7 @@ const corsHeaders = {
 };
 
 serve(async (req) => {
+  console.log("[payment-callback] Received a request.");
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
