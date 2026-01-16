@@ -7,14 +7,23 @@ import Cart from './components/Cart';
 import FireSparks from './components/FireSparks';
 import useInView from './src/hooks/useInView';
 import { supabase } from './src/integrations/supabase/client';
-import PixDisplay from './src/components/PixDisplay';
+import PaymentScreen from './src/components/PaymentScreen';
+
+interface ConfirmedOrder {
+  items: CartItem[];
+  pix: {
+    qrCode: string;
+    transactionId: string;
+    pixCopyPaste: string;
+  };
+}
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>(CategoryType.BURGER);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isGeneratingPix, setIsGeneratingPix] = useState(false);
-  const [pixDetails, setPixDetails] = useState<{ qrCode: string; transactionId: string; pixCopyPaste: string; } | null>(null);
+  const [confirmedOrder, setConfirmedOrder] = useState<ConfirmedOrder | null>(null);
 
   const [menuRef, isMenuInView] = useInView({ threshold: 0.1 });
   const [aboutRef, isAboutInView] = useInView({ threshold: 0.1 });
@@ -63,7 +72,6 @@ const App: React.FC = () => {
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-    // Dados fixos para a transação PIX
     const clientData = {
       name: 'Cliente Chama Park',
       document: '12345678900',
@@ -76,11 +84,12 @@ const App: React.FC = () => {
         body: { amount: total, clientData },
       });
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
-      setPixDetails(data);
+      if (data) {
+        setConfirmedOrder({ items: [...cart], pix: data });
+        setCart([]);
+      }
 
     } catch (error) {
       console.error('Error creating PIX payment:', error);
@@ -90,9 +99,8 @@ const App: React.FC = () => {
     }
   };
 
-  const closePixDisplay = () => {
-    setPixDetails(null);
-    setCart([]);
+  const closePaymentScreen = () => {
+    setConfirmedOrder(null);
   };
 
   return (
@@ -313,11 +321,14 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {pixDetails && (
-        <PixDisplay 
-          qrCodeBase64={pixDetails.qrCode}
-          pixCopyPaste={pixDetails.pixCopyPaste}
-          onClose={closePixDisplay}
+      {confirmedOrder && (
+        <PaymentScreen
+          orderItems={confirmedOrder.items}
+          pixDetails={{
+            qrCodeBase64: confirmedOrder.pix.qrCode,
+            pixCopyPaste: confirmedOrder.pix.pixCopyPaste,
+          }}
+          onClose={closePaymentScreen}
         />
       )}
     </div>
