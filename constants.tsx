@@ -1,4 +1,3 @@
-
 import { MenuItem, CategoryType } from './types';
 
 export const MENU_ITEMS: MenuItem[] = [
@@ -19,6 +18,127 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 44.90,
     category: CategoryType.BURGER,
     image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b3',
+    name: 'Explosão de Bacon',
+    description: 'Burger 180g, triplo bacon, queijo cheddar, picles e molho barbecue defumado.',
+    price: 42.50,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b4',
+    name: 'Gorgonzola Rústico',
+    description: 'Burger 180g, creme de gorgonzola, nozes caramelizadas e rúcula fresca no pão australiano.',
+    price: 41.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1603614502396-1c3e4a48182c?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b5',
+    name: 'Frango Crocante',
+    description: 'Filé de frango empanado super crocante, alface americana, tomate e maionese de ervas.',
+    price: 35.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b6',
+    name: 'Calor Mexicano',
+    description: 'Burger 180g, queijo pepper jack, guacamole artesanal, pimenta jalapeño e nachos.',
+    price: 39.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1625575332992-39837a6979d2?q=80&w=800&auto=format&fit=crop',
+    badge: 'Apimentado'
+  },
+  {
+    id: 'b7',
+    name: 'Costela Desfiada',
+    description: 'Burger de costela 200g, costela desfiada no barbecue, queijo provolone e cebola crispy.',
+    price: 48.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1627907222043-9c1a4d0f6e65?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b8',
+    name: 'O Clássico Americano',
+    description: 'Burger 150g, queijo americano, picles, cebola roxa, ketchup e mostarda.',
+    price: 30.00,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b9',
+    name: 'Rei do Queijo',
+    description: 'Burger 180g empanado e recheado com queijo mussarela, alface e molho de tomate fresco.',
+    price: 43.00,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1606131731446-5568d87113aa?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b10',
+    name: 'Veggie do Futuro',
+    description: 'Burger à base de plantas, queijo vegano, alface, tomate, cebola roxa e maionese vegana.',
+    price: 37.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b11',
+    name: 'Ogro Duplo',
+    description: 'Dois burgers de 200g, quatro fatias de cheddar, bacon em tiras e molho especial da casa.',
+    price: 55.00,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1547584370-2cc98b8b8dc8?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b12',
+    name: 'Cebola Suprema',
+    description: 'Burger 180g, anéis de cebola empanados, queijo suíço e molho ranch.',
+    price: 38.50,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1549611016-3a70d82b5040?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b13',
+    name: 'Picanha Nobre',
+    description: 'Burger de picanha 200g, queijo coalho grelhado, vinagrete e maionese de alho.',
+    price: 49.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1582196016295-f6c8ac162407?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b14',
+    name: 'Doce Brasa',
+    description: 'Burger 180g, queijo brie, geleia de pimenta e fatias de presunto parma.',
+    price: 46.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1550317138-10000687a72b?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b15',
+    name: 'Ovo Perfeito',
+    description: 'Burger 150g, queijo prato, ovo frito com gema mole, bacon e alface.',
+    price: 36.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1551984319-05a81d9b6a5a?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b16',
+    name: 'Smash Duplo Bacon',
+    description: 'Dois burgers smash de 90g, cheddar duplo, fatias de bacon e molho tártaro.',
+    price: 38.90,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'b17',
+    name: 'Mediterrâneo',
+    description: 'Burger de cordeiro 180g, queijo feta, tomate seco, azeitonas pretas e molho de iogurte com hortelã.',
+    price: 47.50,
+    category: CategoryType.BURGER,
+    image: 'https://images.unsplash.com/photo-1605789534313-b161d33a7543?q=80&w=800&auto=format&fit=crop'
   },
   // PIZZAS
   {
