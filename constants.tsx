@@ -5,10 +5,10 @@ export const MENU_ITEMS: MenuItem[] = [
   {
     id: 'b1',
     name: 'Smash Chama Original',
-    description: 'Dois burgers de 90g, cheddar duplo, cebola caramelizada e molho secreto no pão brioche.',
+    description: 'Dois burgers de 9g, cheddar duplo, cebola caramelizada e molho secreto no pão brioche.',
     price: 32.90,
     category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?q=80&w=800&auto=format=fit=crop',
     badge: 'Mais Vendido'
   },
   {
@@ -17,7 +17,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Burger 200g grelhado no fogo, bacon crocante, alface, tomate e maionese de páprica.',
     price: 44.90,
     category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?q=80&w=800&auto=format=fit=crop'
   },
   {
     id: 'b3',
@@ -118,28 +118,12 @@ export const MENU_ITEMS: MenuItem[] = [
     badge: 'Exclusivo'
   },
   {
-    id: 'p3',
-    name: 'Margherita Clássica',
-    description: 'Molho de tomate, mussarela de búfala, manjericão fresco e um fio de azeite.',
-    price: 55.00,
-    category: CategoryType.PIZZA,
-    image: 'https://images.unsplash.com/photo-1595854337175-79a6a0e389c4?q=80&w=800&auto=format&fit=crop'
-  },
-  {
     id: 'p4',
     name: 'Quatro Queijos',
     description: 'Uma combinação perfeita de mussarela, provolone, parmesão e gorgonzola.',
     price: 65.00,
     category: CategoryType.PIZZA,
     image: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'p5',
-    name: 'Frango com Catupiry',
-    description: 'Frango desfiado temperado coberto com o autêntico requeijão Catupiry.',
-    price: 62.00,
-    category: CategoryType.PIZZA,
-    image: 'https://images.unsplash.com/photo-1627461979409-632070635b9a?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'p6',
@@ -180,23 +164,6 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 70.00,
     category: CategoryType.PIZZA,
     image: 'https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'p11',
-    name: 'Camarão com Alho',
-    description: 'Camarões salteados no alho e óleo, mussarela, catupiry e cheiro-verde.',
-    price: 82.00,
-    category: CategoryType.PIZZA,
-    image: 'https://images.unsplash.com/photo-1566843972142-a7e67e6346a2?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'p12',
-    name: 'Chocolate com Morango',
-    description: 'Uma base doce com chocolate derretido, morangos frescos e leite condensado.',
-    price: 55.00,
-    category: CategoryType.PIZZA,
-    image: 'https://images.unsplash.com/photo-1555071033-52324a3813a7?q=80&w=800&auto=format&fit=crop',
-    badge: 'Sobremesa'
   },
   // JAPANESE
   {
