@@ -41,7 +41,8 @@ serve(async (req) => {
       }
     }
 
-    return new Response(JSON.stringify({ received: true }), {
+    // Retorna a resposta exata que a API da Royal Banking espera (HTTP 200 com o corpo JSON "200")
+    return new Response(JSON.stringify(200), {
       headers: { ...corsHeaders, "Content-Type": "application/json" },
       status: 200,
     });
