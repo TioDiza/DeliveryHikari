@@ -1,16 +1,21 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { CategoryType, MenuItem, CartItem } from './types';
 import { MENU_ITEMS } from './constants';
 import Navbar from './components/Navbar';
 import MenuCard from './components/MenuCard';
 import Cart from './components/Cart';
 import FireSparks from './components/FireSparks';
+import useInView from './hooks/useInView';
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>(CategoryType.BURGER);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isOrdering, setIsOrdering] = useState(false);
+
+  const [menuRef, isMenuInView] = useInView({ threshold: 0.1 });
+  const [aboutRef, isAboutInView] = useInView({ threshold: 0.1 });
+  const [footerRef, isFooterInView] = useInView({ threshold: 0.1 });
 
   const categories = Object.values(CategoryType);
 
@@ -33,7 +38,6 @@ const App: React.FC = () => {
       }
       return [...prev, { ...item, quantity: 1 }];
     });
-    // Trigger small animation feedback could go here
   };
 
   const removeFromCart = (id: string) => {
@@ -70,7 +74,6 @@ const App: React.FC = () => {
       {/* Hero Section */}
       <section 
         className="relative h-[80vh] flex items-center justify-center pt-20 overflow-hidden animate-on-load"
-        style={{ animationDelay: '0.1s' }}
       >
         <div className="absolute inset-0 z-0">
           <img 
@@ -101,7 +104,6 @@ const App: React.FC = () => {
           </div>
         </div>
 
-        {/* Floating Icons Background */}
         <div className="absolute bottom-10 left-10 opacity-10 hidden lg:block">
             <i className="fa-solid fa-burger text-9xl"></i>
         </div>
@@ -113,7 +115,7 @@ const App: React.FC = () => {
       {/* Stats/Badges */}
       <div 
         className="bg-chama-orange py-6 overflow-hidden animate-on-load"
-        style={{ animationDelay: '0.3s' }}
+        style={{ animationDelay: '0.2s' }}
       >
         <div className="flex animate-scroll-left">
           {[...stats, ...stats].map((stat, index) => (
@@ -128,8 +130,8 @@ const App: React.FC = () => {
       {/* Menu Section */}
       <section 
         id="menu" 
-        className="py-24 px-4 max-w-7xl mx-auto animate-on-load"
-        style={{ animationDelay: '0.5s' }}
+        ref={menuRef}
+        className={`py-24 px-4 max-w-7xl mx-auto transition-opacity duration-700 ${isMenuInView ? 'animate-on-load' : 'opacity-0'}`}
       >
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div>
@@ -164,8 +166,8 @@ const App: React.FC = () => {
       {/* CTA Section / About */}
       <section 
         id="sobre" 
-        className="bg-[#111] py-24 px-4 overflow-hidden relative animate-on-load"
-        style={{ animationDelay: '0.7s' }}
+        ref={aboutRef}
+        className={`bg-[#111] py-24 px-4 overflow-hidden relative transition-opacity duration-700 ${isAboutInView ? 'animate-on-load' : 'opacity-0'}`}
       >
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-16">
           <div className="relative">
@@ -205,8 +207,8 @@ const App: React.FC = () => {
 
       {/* Footer */}
       <footer 
-        className="bg-black py-16 px-4 animate-on-load"
-        style={{ animationDelay: '0.9s' }}
+        ref={footerRef}
+        className={`bg-black py-16 px-4 transition-opacity duration-700 ${isFooterInView ? 'animate-on-load' : 'opacity-0'}`}
       >
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/5 pb-12">
             <div className="col-span-1 md:col-span-2">
