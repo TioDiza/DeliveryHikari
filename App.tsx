@@ -14,6 +14,13 @@ const App: React.FC = () => {
 
   const categories = Object.values(CategoryType);
 
+  const stats = [
+    { icon: 'fa-solid fa-bolt', text: 'Entrega Express' },
+    { icon: 'fa-solid fa-fire-burner', text: 'Grelhado na Brasa' },
+    { icon: 'fa-solid fa-medal', text: 'Qualidade Premium' },
+    { icon: 'fa-solid fa-clock', text: 'Aberto até 04h' },
+  ];
+
   const filteredItems = useMemo(() => {
     return MENU_ITEMS.filter(item => item.category === activeCategory);
   }, [activeCategory]);
@@ -101,12 +108,14 @@ const App: React.FC = () => {
       </section>
 
       {/* Stats/Badges */}
-      <div className="bg-chama-orange py-6">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white brand-font font-bold uppercase italic">
-            <div><i className="fa-solid fa-bolt mb-2 text-2xl"></i><br/>Entrega Express</div>
-            <div><i className="fa-solid fa-fire-burner mb-2 text-2xl"></i><br/>Grelhado na Brasa</div>
-            <div><i className="fa-solid fa-medal mb-2 text-2xl"></i><br/>Qualidade Premium</div>
-            <div><i className="fa-solid fa-clock mb-2 text-2xl"></i><br/>Aberto até 04h</div>
+      <div className="bg-chama-orange py-6 overflow-hidden">
+        <div className="flex animate-scroll-left">
+          {[...stats, ...stats].map((stat, index) => (
+            <div key={index} className="flex-shrink-0 flex items-center justify-center gap-3 text-white brand-font font-bold uppercase italic px-12">
+              <i className={`${stat.icon} text-2xl`}></i>
+              <span>{stat.text}</span>
+            </div>
+          ))}
         </div>
       </div>
 

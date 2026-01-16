@@ -46,6 +46,14 @@
           box-shadow: 0 0 5px #FF4D00, 0 0 10px #FF4D00, 0 0 15px #FF4D00;
           opacity: 0;
         }
+
+        @keyframes scroll-left {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+        .animate-scroll-left {
+          animation: scroll-left 20s linear infinite;
+        }
     </style>
 <script type="importmap">
 {
