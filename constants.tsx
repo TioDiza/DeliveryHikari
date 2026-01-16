@@ -233,5 +233,29 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 0.50,
     category: CategoryType.DRINKS,
     image: 'https://images.unsplash.com/photo-1575224300302-a889216302c7?q=80&w=800&auto=format=fit=crop'
+  },
+  {
+    id: 'd5',
+    name: 'Bala de Menta',
+    description: 'Uma bala de menta para refrescar.',
+    price: 0.10,
+    category: CategoryType.DRINKS,
+    image: 'https://images.unsplash.com/photo-1600358709345-85c73113416a?q=80&w=800&auto=format=fit=crop'
+  },
+  {
+    id: 'd6',
+    name: 'Guardanapo Extra',
+    description: 'Um guardanapo extra, porque acidentes acontecem.',
+    price: 0.11,
+    category: CategoryType.DRINKS,
+    image: 'https://images.unsplash.com/photo-1604582039093-b6b118a3a5a5?q=80&w=800&auto=format=fit=crop'
+  },
+  {
+    id: 'd7',
+    name: 'Molho Extra',
+    description: 'Uma porção extra do nosso delicioso molho especial.',
+    price: 0.12,
+    category: CategoryType.DRINKS,
+    image: 'https://images.unsplash.com/photo-1598515214211-89d3c72732b2?q=80&w=800&auto=format=fit=crop'
   }
 ];
