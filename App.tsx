@@ -1,10 +1,10 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { CategoryType, MenuItem, CartItem } from './types';
 import { MENU_ITEMS } from './constants';
 import Navbar from './components/Navbar';
 import MenuCard from './components/MenuCard';
 import Cart from './components/Cart';
+import FireSparks from './components/FireSparks';
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>(CategoryType.BURGER);
@@ -69,6 +69,7 @@ const App: React.FC = () => {
             alt="Hero Background"
           />
           <div className="absolute inset-0 gradient-overlay"></div>
+          <FireSparks />
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -239,7 +240,7 @@ const App: React.FC = () => {
             className="w-full bg-chama-orange text-white py-4 rounded-2xl font-bold flex justify-between px-6 shadow-2xl shadow-chama-orange/40 animate-bounce"
           >
             <span>Ver Carrinho ({cart.reduce((s, i) => s + i.quantity, 0)})</span>
-            <span>R$ {cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)}</span>
+            <span>R$ {cart.reduce((s, i) => s + i.quantity, 0).toFixed(2)}</span>
           </button>
         </div>
       )}
