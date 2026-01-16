@@ -8,13 +8,15 @@ import FireSparks from './components/FireSparks';
 import useInView from './src/hooks/useInView';
 import { supabase } from './src/integrations/supabase/client';
 import PixDisplay from './src/components/PixDisplay';
+import CheckoutForm from './src/components/CheckoutForm';
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>(CategoryType.BURGER);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCheckoutFormOpen, setIsCheckoutFormOpen] = useState(false);
   const [isGeneratingPix, setIsGeneratingPix] = useState(false);
-  const [pixDetails, setPixDetails] = useState<{ qrCode: string; transactionId: string } | null>(null);
+  const [pixDetails, setPixDetails] = useState<{ qrCode: string; transactionId: string; pixCopyPaste: string; } | null>(null);
 
   const [menuRef, isMenuInView] = useInView({ threshold: 0.1 });
   const [aboutRef, isAboutInView] = useInView({ threshold: 0.1 });
@@ -57,15 +59,15 @@ const App: React.FC = () => {
     }));
   };
 
-  const handleCheckout = async () => {
+  const handleFinalizeOrder = async (clientData: object) => {
     setIsGeneratingPix(true);
-    setIsCartOpen(false);
+    setIsCheckoutFormOpen(false);
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
     try {
       const { data, error } = await supabase.functions.invoke('create-pix-payment', {
-        body: { amount: total },
+        body: { amount: total, clientData },
       });
 
       if (error) {
@@ -84,7 +86,7 @@ const App: React.FC = () => {
 
   const closePixDisplay = () => {
     setPixDetails(null);
-    setCart([]); // Clear cart after payment is initiated
+    setCart([]);
   };
 
   return (
@@ -280,7 +282,10 @@ const App: React.FC = () => {
         items={cart}
         onRemove={removeFromCart}
         onUpdateQty={updateQuantity}
-        onCheckout={handleCheckout}
+        onCheckout={() => {
+          setIsCartOpen(false);
+          setIsCheckoutFormOpen(true);
+        }}
       />
 
       {/* Quick View Cart Mobile Overlay */}
@@ -291,7 +296,7 @@ const App: React.FC = () => {
             className="w-full bg-chama-orange text-white py-4 rounded-2xl font-bold flex justify-between px-6 shadow-2xl shadow-chama-orange/40 animate-bounce"
           >
             <span>Ver Carrinho ({cart.reduce((s, i) => s + i.quantity, 0)})</span>
-            <span>R$ {cart.reduce((s, i) => s + i.quantity, 0).toFixed(2)}</span>
+            <span>R$ {cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)}</span>
           </button>
         </div>
       )}
@@ -305,9 +310,17 @@ const App: React.FC = () => {
         </div>
       )}
 
+      <CheckoutForm
+        isOpen={isCheckoutFormOpen}
+        onClose={() => setIsCheckoutFormOpen(false)}
+        onSubmit={handleFinalizeOrder}
+        total={cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}
+      />
+
       {pixDetails && (
         <PixDisplay 
           qrCodeBase64={pixDetails.qrCode}
+          pixCopyPaste={pixDetails.pixCopyPaste}
           onClose={closePixDisplay}
         />
       )}

@@ -8,13 +8,12 @@ const corsHeaders = {
 const ROYAL_BANKING_API_URL = 'https://api.royalbanking.com.br/v1/gateway/';
 
 serve(async (req) => {
-  // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
   }
 
   try {
-    const { amount } = await req.json();
+    const { amount, clientData } = await req.json();
     const apiKey = Deno.env.get('ROYAL_BANKING_API_KEY');
 
     if (!apiKey) {
@@ -25,13 +24,12 @@ serve(async (req) => {
       });
     }
 
-    // Placeholder client data. In a real app, this would come from the user's profile.
-    const clientData = {
-      name: "Cliente Chama Food Park",
-      document: "12345678911", // Using a placeholder CPF
-      telefone: "11999999999",
-      email: "cliente@chamafoodpark.com"
-    };
+    if (!clientData || !clientData.name || !clientData.document || !clientData.email) {
+      return new Response(JSON.stringify({ error: 'Client data is missing or incomplete.' }), {
+          status: 400,
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL');
     const callbackUrl = `${supabaseUrl}/functions/v1/payment-callback`;
@@ -67,7 +65,8 @@ serve(async (req) => {
 
     return new Response(JSON.stringify({ 
       qrCode: responseData.paymentCodeBase64,
-      transactionId: responseData.idTransaction 
+      transactionId: responseData.idTransaction,
+      pixCopyPaste: responseData.paymentCode // Assumindo que a API retorna este campo
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
