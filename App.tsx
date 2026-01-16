@@ -125,7 +125,7 @@ const App: React.FC = () => {
   const cartTotal = cartSubtotal > 0 ? cartSubtotal + shippingFee : 0;
 
   return (
-    <div className="min-h-screen bg-chama-black overflow-x-hidden">
+    <div className="min-h-screen bg-chama-black overflow-x-hidden pb-24 md:pb-0">
       <Navbar 
         onCartClick={() => setIsCartOpen(true)} 
         cartCount={cart.reduce((s, i) => s + i.quantity, 0)} 
@@ -133,7 +133,7 @@ const App: React.FC = () => {
 
       {/* Hero Section */}
       <section 
-        className="relative h-[80vh] flex items-center justify-center pt-20 overflow-hidden animate-on-load"
+        className="relative min-h-[80vh] flex items-center justify-center pt-20 overflow-hidden animate-on-load"
       >
         <div className="absolute inset-0 z-0">
           <img 
@@ -145,7 +145,7 @@ const App: React.FC = () => {
           <FireSparks />
         </div>
         
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto py-16">
           <span className="text-chama-orange font-bold tracking-[0.3em] uppercase mb-4 block">Festival de Sabores Urbanos</span>
           <h1 className="brand-font text-8xl md:text-9xl font-black uppercase leading-none mb-6 italic">
             Aqui a fome <br /> 
@@ -233,7 +233,7 @@ const App: React.FC = () => {
           <div className="relative">
             <div className="bg-chama-orange absolute -top-4 -left-4 w-24 h-24 rounded-full opacity-20 blur-3xl"></div>
             <img 
-              src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto-format=fit=crop" 
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto-format&fit=crop" 
               className="rounded-3xl relative z-10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
               alt="Sobre a Chama"
             />
