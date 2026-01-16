@@ -1,4 +1,3 @@
-
 import React from 'react';
 
 interface NavbarProps {
@@ -8,7 +7,7 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ onCartClick, cartCount }) => {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-chama-black/90 backdrop-blur-sm border-b border-white/10 px-4 py-3">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-chama-black border-b border-white/10 px-4 py-3">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="bg-chama-orange w-10 h-10 rounded flex items-center justify-center">
