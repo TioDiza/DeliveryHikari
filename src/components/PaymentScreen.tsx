@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CartItem } from '../../types';
 import QRCode from 'qrcode';
-import { SHIPPING_FEE } from '../../constants';
+import { calculateShippingFee } from '../utils/cartUtils';
 
 interface PaymentScreenProps {
   orderItems: CartItem[];
@@ -17,7 +17,8 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
   const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null);
 
   const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const total = subtotal + SHIPPING_FEE;
+  const shippingFee = calculateShippingFee(orderItems);
+  const total = subtotal + shippingFee;
 
   useEffect(() => {
     if (pixDetails.qrCodeBase64) {
@@ -80,7 +81,9 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
               </div>
               <div className="flex justify-between items-center text-sm">
                   <span className="text-gray-300">Taxa de Entrega</span>
-                  <span className="font-semibold text-white">R$ {SHIPPING_FEE.toFixed(2)}</span>
+                  <span className="font-semibold text-white">
+                    {shippingFee > 0 ? `R$ ${shippingFee.toFixed(2)}` : 'Grátis'}
+                  </span>
               </div>
               <div className="flex justify-between items-center font-bold mt-2">
                   <span className="text-gray-300">Total</span>

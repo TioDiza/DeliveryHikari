@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { CategoryType, MenuItem, CartItem } from './types';
-import { MENU_ITEMS, SHIPPING_FEE } from './constants';
+import { MENU_ITEMS } from './constants';
 import Navbar from './components/Navbar';
 import MenuCard from './components/MenuCard';
 import Cart from './components/Cart';
@@ -8,6 +8,7 @@ import FireSparks from './components/FireSparks';
 import useInView from './src/hooks/useInView';
 import { supabase } from './src/integrations/supabase/client';
 import PaymentScreen from './src/components/PaymentScreen';
+import { calculateShippingFee } from './src/utils/cartUtils';
 
 interface ConfirmedOrder {
   items: CartItem[];
@@ -71,7 +72,8 @@ const App: React.FC = () => {
     setIsCartOpen(false);
 
     const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-    const total = subtotal + SHIPPING_FEE;
+    const shipping = calculateShippingFee(cart);
+    const total = subtotal + shipping;
 
     const clientData = {
       name: 'Cliente Chama Park',
@@ -105,7 +107,8 @@ const App: React.FC = () => {
   };
 
   const cartSubtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
-  const cartTotal = cartSubtotal > 0 ? cartSubtotal + SHIPPING_FEE : 0;
+  const shippingFee = calculateShippingFee(cart);
+  const cartTotal = cartSubtotal > 0 ? cartSubtotal + shippingFee : 0;
 
   return (
     <div className="min-h-screen bg-chama-black overflow-x-hidden">

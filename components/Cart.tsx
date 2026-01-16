@@ -1,6 +1,6 @@
 import React from 'react';
 import { CartItem } from '../types';
-import { SHIPPING_FEE } from '../constants';
+import { calculateShippingFee } from '../src/utils/cartUtils';
 
 interface CartProps {
   isOpen: boolean;
@@ -13,7 +13,8 @@ interface CartProps {
 
 const Cart: React.FC<CartProps> = ({ isOpen, onClose, items, onRemove, onUpdateQty, onCheckout }) => {
   const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const total = subtotal + SHIPPING_FEE;
+  const shippingFee = calculateShippingFee(items);
+  const total = subtotal + shippingFee;
 
   return (
     <div className={`fixed inset-0 z-[100] transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
@@ -65,7 +66,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, items, onRemove, onUpdateQ
               </div>
               <div className="flex justify-between items-center text-sm">
                 <span className="text-gray-400">Taxa de Entrega</span>
-                <span className="font-bold text-white">R$ {SHIPPING_FEE.toFixed(2).replace('.', ',')}</span>
+                <span className="font-bold text-white">
+                  {shippingFee > 0 ? `R$ ${shippingFee.toFixed(2).replace('.', ',')}` : 'Grátis'}
+                </span>
               </div>
               <div className="border-t border-white/10 my-2"></div>
               <div className="flex justify-between items-center">

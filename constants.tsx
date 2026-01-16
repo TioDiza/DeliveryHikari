@@ -217,5 +217,21 @@ export const MENU_ITEMS: MenuItem[] = [
     price: 12.00,
     category: CategoryType.DRINKS,
     image: 'https://images.unsplash.com/photo-1613478223719-2ab802602423?q=80&w=800&auto=format=fit=crop'
+  },
+  {
+    id: 'd3',
+    name: 'Água Mineral 500ml',
+    description: 'Água mineral sem gás, geladinha.',
+    price: 1.00,
+    category: CategoryType.DRINKS,
+    image: 'https://images.unsplash.com/photo-1583115260445-f91fe8a798a9?q=80&w=800&auto=format=fit=crop'
+  },
+  {
+    id: 'd4',
+    name: 'Chiclete',
+    description: 'Pra deixar o hálito fresco depois da batalha.',
+    price: 0.50,
+    category: CategoryType.DRINKS,
+    image: 'https://images.unsplash.com/photo-1575224300302-a889216302c7?q=80&w=800&auto=format=fit=crop'
   }
 ];
