@@ -117,6 +117,87 @@ export const MENU_ITEMS: MenuItem[] = [
     image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=800&auto=format&fit=crop',
     badge: 'Exclusivo'
   },
+  {
+    id: 'p3',
+    name: 'Margherita Clássica',
+    description: 'Molho de tomate, mussarela de búfala, manjericão fresco e um fio de azeite.',
+    price: 55.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1598021680942-850a003c520f?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p4',
+    name: 'Quatro Queijos',
+    description: 'Uma combinação perfeita de mussarela, provolone, parmesão e gorgonzola.',
+    price: 65.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p5',
+    name: 'Frango com Catupiry',
+    description: 'Frango desfiado temperado coberto com o autêntico requeijão Catupiry.',
+    price: 62.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1620374645498-af6bd680a273?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p6',
+    name: 'Pepperoni Americano',
+    description: 'Mussarela de alta qualidade e fatias generosas de pepperoni levemente picante.',
+    price: 64.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p7',
+    name: 'Portuguesa Completa',
+    description: 'Presunto, mussarela, ovos, cebola, azeitonas e pimentão. Uma refeição completa.',
+    price: 60.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1594007654729-407eedc4be65?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p8',
+    name: 'Parma com Rúcula',
+    description: 'Mussarela, presunto de parma, rúcula fresca e lascas de parmesão.',
+    price: 75.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p9',
+    name: 'Vegana da Horta',
+    description: 'Molho de tomate, brócolis, tomate cereja, milho, azeitonas e queijo vegano.',
+    price: 68.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1593246049226-ded77bf90326?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p10',
+    name: 'Carbonara',
+    description: 'Mussarela, pancetta, ovos, queijo pecorino e pimenta do reino moída na hora.',
+    price: 70.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1528137871618-6ca50365e49e?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p11',
+    name: 'Camarão com Alho',
+    description: 'Camarões salteados no alho e óleo, mussarela, catupiry e cheiro-verde.',
+    price: 82.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983d34?q=80&w=800&auto=format&fit=crop'
+  },
+  {
+    id: 'p12',
+    name: 'Chocolate com Morango',
+    description: 'Uma base doce com chocolate derretido, morangos frescos e leite condensado.',
+    price: 55.00,
+    category: CategoryType.PIZZA,
+    image: 'https://images.unsplash.com/photo-1555071033-52324a3813a7?q=80&w=800&auto=format&fit=crop',
+    badge: 'Sobremesa'
+  },
   // JAPANESE
   {
     id: 'j1',
