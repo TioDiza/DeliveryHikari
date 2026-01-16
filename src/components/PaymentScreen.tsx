@@ -26,64 +26,64 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
 
   return (
     <div className="fixed inset-0 z-[200] bg-black/90 flex flex-col items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white text-black rounded-2xl p-8 max-w-md w-full my-8">
-        <div className="text-center">
-            <div className="text-yellow-500 text-2xl mb-4">
+      <div className="bg-[#1A1A1A] text-white rounded-2xl p-6 max-w-sm w-full my-8 border border-white/10 shadow-2xl shadow-chama-orange/10">
+        <div className="text-center mb-6">
+            <div className="text-chama-orange text-3xl mb-3">
                 <i className="fa-solid fa-clock animate-spin"></i>
             </div>
-            <h2 className="brand-font text-2xl font-bold uppercase mb-2 text-gray-800">Aguardando Pagamento</h2>
-            <p className="text-gray-600 mb-6">Seu pedido foi recebido! Pague com PIX para confirmar.</p>
+            <h2 className="brand-font text-2xl font-bold uppercase mb-1">Aguardando Pagamento</h2>
+            <p className="text-gray-400 text-sm">Pague com PIX para confirmar seu pedido.</p>
         </div>
 
-        <div className="bg-gray-50 rounded-lg p-4 mb-6 max-h-48 overflow-y-auto">
-            <h3 className="font-bold text-gray-700 mb-3 text-sm uppercase">Resumo do Pedido</h3>
+        <div className="bg-black/20 rounded-lg p-4 mb-6 max-h-40 overflow-y-auto">
+            <h3 className="font-bold text-gray-300 mb-3 text-xs uppercase tracking-wider">Resumo do Pedido</h3>
             <div className="space-y-2">
                 {orderItems.map(item => (
                     <div key={item.id} className="flex justify-between items-center text-sm">
-                        <span className="text-gray-600">{item.quantity}x {item.name}</span>
-                        <span className="font-semibold text-gray-800">R$ {(item.price * item.quantity).toFixed(2)}</span>
+                        <span className="text-gray-300">{item.quantity}x {item.name}</span>
+                        <span className="font-semibold text-white">R$ {(item.price * item.quantity).toFixed(2)}</span>
                     </div>
                 ))}
             </div>
-            <div className="border-t border-gray-200 mt-3 pt-3 flex justify-between items-center font-bold">
-                <span className="text-gray-800">Total</span>
-                <span className="text-lg text-gray-900">R$ {total.toFixed(2)}</span>
+            <div className="border-t border-white/10 mt-3 pt-3 flex justify-between items-center font-bold">
+                <span className="text-gray-300">Total</span>
+                <span className="text-lg text-chama-orange brand-font">R$ {total.toFixed(2)}</span>
             </div>
         </div>
 
         <div className="text-center">
-            <div className="p-2 border-4 border-gray-200 rounded-lg inline-block">
+            <div className="p-2 bg-white rounded-lg inline-block">
               <img 
                 src={`data:image/png;base64,${pixDetails.qrCodeBase64}`} 
                 alt="PIX QR Code"
-                className="w-56 h-56"
+                className="w-48 h-48"
               />
             </div>
             
             <div className="mt-6">
-              <label className="text-gray-500 text-xs font-bold uppercase">PIX Copia e Cola</label>
-              <div className="flex items-center mt-1 bg-gray-100 rounded-lg p-1">
+              <label className="text-gray-400 text-xs font-bold uppercase tracking-wider">PIX Copia e Cola</label>
+              <div className="flex items-center mt-1 bg-black/20 rounded-lg p-1 border border-white/10">
                 <input 
                   type="text"
                   value={pixDetails.pixCopyPaste || 'Gerando...'}
                   readOnly
-                  className="flex-1 bg-transparent text-gray-700 text-xs p-2 focus:outline-none"
+                  className="flex-1 bg-transparent text-gray-300 text-xs p-2 focus:outline-none"
                 />
                 <button 
                   onClick={handleCopy}
                   disabled={!pixDetails.pixCopyPaste}
-                  className="bg-gray-800 text-white px-4 py-2 rounded-md text-xs font-bold uppercase hover:bg-black transition-colors disabled:opacity-50"
+                  className="bg-chama-orange text-white px-4 py-2 rounded-md text-xs font-bold uppercase hover:bg-orange-600 transition-colors disabled:opacity-50"
                 >
-                  {copied ? <><i className="fa-solid fa-check"></i> Copiado!</> : <><i className="fa-solid fa-copy"></i> Copiar</>}
+                  {copied ? <><i className="fa-solid fa-check"></i> Copiado</> : <><i className="fa-solid fa-copy"></i> Copiar</>}
                 </button>
               </div>
             </div>
         </div>
 
-        <p className="text-gray-500 text-xs text-center mt-6">Após o pagamento, seu pedido será confirmado automaticamente. Você pode fechar esta tela.</p>
+        <p className="text-gray-500 text-xs text-center mt-6">Após o pagamento, seu pedido será confirmado automaticamente.</p>
         <button 
           onClick={onClose}
-          className="mt-4 w-full bg-gray-800 text-white py-3 rounded-lg font-bold uppercase hover:bg-black transition-colors"
+          className="mt-4 w-full bg-white/10 text-white py-3 rounded-lg font-bold uppercase hover:bg-white/20 transition-colors"
         >
           Fechar
         </button>
