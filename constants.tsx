@@ -28,37 +28,12 @@ export const MENU_ITEMS: MenuItem[] = [
     image: 'https://images.unsplash.com/photo-1607013251379-e6eecfffe234?q=80&w=800&auto=format&fit=crop'
   },
   {
-    id: 'b4',
-    name: 'Gorgonzola Rústico',
-    description: 'Burger 180g, creme de gorgonzola, nozes caramelizadas e rúcula fresca no pão australiano.',
-    price: 41.90,
-    category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1605478377422-4382c76a4b38?q=80&w=800&auto=format&fit=crop'
-  },
-  {
     id: 'b5',
     name: 'Frango Crocante',
     description: 'Filé de frango empanado super crocante, alface americana, tomate e maionese de ervas.',
     price: 35.90,
     category: CategoryType.BURGER,
     image: 'https://images.unsplash.com/photo-1562967914-608f82629710?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'b6',
-    name: 'Calor Mexicano',
-    description: 'Burger 180g, queijo pepper jack, guacamole artesanal, pimenta jalapeño e nachos.',
-    price: 39.90,
-    category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1598603323243-5f897a1204d2?q=80&w=800&auto=format&fit=crop',
-    badge: 'Apimentado'
-  },
-  {
-    id: 'b7',
-    name: 'Costela Desfiada',
-    description: 'Burger de costela 200g, costela desfiada no barbecue, queijo provolone e cebola crispy.',
-    price: 48.90,
-    category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1604467707321-70d5ac45853b?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'b8',
@@ -117,28 +92,12 @@ export const MENU_ITEMS: MenuItem[] = [
     image: 'https://images.unsplash.com/photo-1550317138-10000687a72b?q=80&w=800&auto=format&fit=crop'
   },
   {
-    id: 'b15',
-    name: 'Ovo Perfeito',
-    description: 'Burger 150g, queijo prato, ovo frito com gema mole, bacon e alface.',
-    price: 36.90,
-    category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1565062209392-253696f43a60?q=80&w=800&auto=format&fit=crop'
-  },
-  {
     id: 'b16',
     name: 'Smash Duplo Bacon',
     description: 'Dois burgers smash de 90g, cheddar duplo, fatias de bacon e molho tártaro.',
     price: 38.90,
     category: CategoryType.BURGER,
     image: 'https://images.unsplash.com/photo-1586190848861-99aa4a171e90?q=80&w=800&auto=format&fit=crop'
-  },
-  {
-    id: 'b17',
-    name: 'Mediterrâneo',
-    description: 'Burger de cordeiro 180g, queijo feta, tomate seco, azeitonas pretas e molho de iogurte com hortelã.',
-    price: 47.50,
-    category: CategoryType.BURGER,
-    image: 'https://images.unsplash.com/photo-1631051714255-80e1f0438f23?q=80&w=800&auto=format&fit=crop'
   },
   // PIZZAS
   {
