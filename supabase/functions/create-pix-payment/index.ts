@@ -64,9 +64,9 @@ serve(async (req) => {
     console.log('[create-pix-payment] Successfully created PIX payment:', responseData.idTransaction);
 
     return new Response(JSON.stringify({ 
-      qrCode: responseData.paymentCodeBase64,
+      qrCode: responseData.qrCode,
       transactionId: responseData.idTransaction,
-      pixCopyPaste: responseData.paymentCode // Assumindo que a API retorna este campo
+      pixCopyPaste: responseData.paymentCode
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
