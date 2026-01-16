@@ -86,8 +86,8 @@ const App: React.FC = () => {
         </div>
         
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <span className="text-chama-orange font-bold tracking-[0.3em] uppercase mb-4 block text-2xl">Festival de Sabores Urbanos</span>
-          <h1 className="brand-font text-7xl md:text-[9rem] font-black uppercase leading-none mb-6 italic">
+          <span className="text-chama-orange font-bold tracking-[0.3em] uppercase mb-4 block">Festival de Sabores Urbanos</span>
+          <h1 className="brand-font text-7xl md:text-8xl font-black uppercase leading-none mb-6 italic">
             Aqui a fome <br /> 
             <span className="text-chama-orange">pega fogo</span>
           </h1>
