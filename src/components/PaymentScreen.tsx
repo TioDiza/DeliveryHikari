@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CartItem } from '../types';
+import QRCode from 'qrcode';
 
 interface PaymentScreenProps {
   orderItems: CartItem[];
@@ -12,8 +13,35 @@ interface PaymentScreenProps {
 
 const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, onClose }) => {
   const [copied, setCopied] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null);
 
   const total = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  useEffect(() => {
+    // Prioriza o QR Code vindo da API
+    if (pixDetails.qrCodeBase64) {
+      setQrCodeUrl(`data:image/png;base64,${pixDetails.qrCodeBase64}`);
+      return;
+    }
+
+    // Se a API falhar, gera um QR Code localmente com o "Copia e Cola"
+    if (pixDetails.pixCopyPaste) {
+      QRCode.toDataURL(pixDetails.pixCopyPaste, {
+        errorCorrectionLevel: 'H',
+        margin: 2,
+        width: 192,
+      })
+        .then(url => {
+          setQrCodeUrl(url);
+        })
+        .catch(err => {
+          console.error('Falha ao gerar QR Code localmente:', err);
+          setQrCodeUrl(null); // Mostra erro se a geração local também falhar
+        });
+    } else {
+      setQrCodeUrl(null);
+    }
+  }, [pixDetails.qrCodeBase64, pixDetails.pixCopyPaste]);
 
   const handleCopy = () => {
     if (pixDetails.pixCopyPaste) {
@@ -53,9 +81,9 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
 
         <div className="text-center">
             <div className="p-2 bg-white rounded-lg inline-block">
-              {pixDetails.qrCodeBase64 ? (
+              {qrCodeUrl ? (
                 <img 
-                  src={`data:image/png;base64,${pixDetails.qrCodeBase64}`} 
+                  src={qrCodeUrl} 
                   alt="PIX QR Code"
                   className="w-48 h-48"
                 />
