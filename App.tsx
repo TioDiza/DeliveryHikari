@@ -6,12 +6,15 @@ import MenuCard from './components/MenuCard';
 import Cart from './components/Cart';
 import FireSparks from './components/FireSparks';
 import useInView from './src/hooks/useInView';
+import { supabase } from './integrations/supabase/client';
+import PixDisplay from './src/components/PixDisplay';
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>(CategoryType.BURGER);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isOrdering, setIsOrdering] = useState(false);
+  const [isGeneratingPix, setIsGeneratingPix] = useState(false);
+  const [pixDetails, setPixDetails] = useState<{ qrCode: string; transactionId: string } | null>(null);
 
   const [menuRef, isMenuInView] = useInView({ threshold: 0.1 });
   const [aboutRef, isAboutInView] = useInView({ threshold: 0.1 });
@@ -54,14 +57,34 @@ const App: React.FC = () => {
     }));
   };
 
-  const handleCheckout = () => {
-    setIsOrdering(true);
-    setTimeout(() => {
-      alert('Seu pedido está a caminho do fogo! 🔥');
-      setCart([]);
-      setIsOrdering(false);
-      setIsCartOpen(false);
-    }, 1500);
+  const handleCheckout = async () => {
+    setIsGeneratingPix(true);
+    setIsCartOpen(false);
+
+    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    try {
+      const { data, error } = await supabase.functions.invoke('create-pix-payment', {
+        body: { amount: total },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      setPixDetails(data);
+
+    } catch (error) {
+      console.error('Error creating PIX payment:', error);
+      alert('Não foi possível gerar o PIX. Tente novamente.');
+    } finally {
+      setIsGeneratingPix(false);
+    }
+  };
+
+  const closePixDisplay = () => {
+    setPixDetails(null);
+    setCart([]); // Clear cart after payment is initiated
   };
 
   return (
@@ -173,7 +196,7 @@ const App: React.FC = () => {
           <div className="relative">
             <div className="bg-chama-orange absolute -top-4 -left-4 w-24 h-24 rounded-full opacity-20 blur-3xl"></div>
             <img 
-              src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format=fit=crop" 
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto-format=fit=crop" 
               className="rounded-3xl relative z-10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
               alt="Sobre a Chama"
             />
@@ -273,13 +296,20 @@ const App: React.FC = () => {
         </div>
       )}
 
-      {isOrdering && (
+      {isGeneratingPix && (
         <div className="fixed inset-0 z-[200] bg-black/90 flex flex-col items-center justify-center">
             <div className="text-chama-orange text-6xl animate-pulse mb-6">
                 <i className="fa-solid fa-fire"></i>
             </div>
-            <h3 className="brand-font text-3xl font-bold uppercase italic text-center px-4">Enviando seu pedido para a brasa...</h3>
+            <h3 className="brand-font text-3xl font-bold uppercase italic text-center px-4">Gerando seu QR Code Pix...</h3>
         </div>
+      )}
+
+      {pixDetails && (
+        <PixDisplay 
+          qrCodeBase64={pixDetails.qrCode}
+          onClose={closePixDisplay}
+        />
       )}
     </div>
   );
