@@ -1,9 +1,16 @@
-
 export enum CategoryType {
   BURGER = 'Hambúrgueres',
   PIZZA = 'Pizzas',
   JAPANESE = 'Comida Japonesa',
   DRINKS = 'Bebidas'
+}
+
+export enum OrderStatus {
+  PENDING_PAYMENT = 'pending_payment',
+  RECEIVED = 'received',
+  IN_PRODUCTION = 'in_production',
+  OUT_FOR_DELIVERY = 'out_for_delivery',
+  DELIVERED = 'delivered',
 }
 
 export interface MenuItem {

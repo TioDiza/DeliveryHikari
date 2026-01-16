@@ -17,6 +17,7 @@ interface ConfirmedOrder {
     transactionId: string;
     pixCopyPaste: string;
   };
+  orderId: string;
 }
 
 const App: React.FC = () => {
@@ -84,13 +85,26 @@ const App: React.FC = () => {
 
     try {
       const { data, error } = await supabase.functions.invoke('create-pix-payment', {
-        body: { amount: total, clientData },
+        body: { 
+          amount: total, 
+          clientData,
+          items: cart,
+          shippingFee: shipping,
+        },
       });
 
       if (error) throw error;
 
       if (data) {
-        setConfirmedOrder({ items: [...cart], pix: data });
+        setConfirmedOrder({ 
+          items: [...cart], 
+          pix: {
+            qrCodeBase64: data.qrCodeBase64,
+            transactionId: data.transactionId,
+            pixCopyPaste: data.pixCopyPaste,
+          },
+          orderId: data.orderId,
+        });
         setCart([]);
       }
 
@@ -330,6 +344,7 @@ const App: React.FC = () => {
 
       {confirmedOrder && (
         <PaymentScreen
+          orderId={confirmedOrder.orderId}
           orderItems={confirmedOrder.items}
           pixDetails={{
             qrCodeBase64: confirmedOrder.pix.qrCodeBase64,

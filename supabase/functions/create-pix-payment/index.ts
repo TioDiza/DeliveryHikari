@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from 'https://esm.sh/@supabase/supabase-js@2.45.0';
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
@@ -13,7 +14,7 @@ serve(async (req) => {
   }
 
   try {
-    const { amount, clientData } = await req.json();
+    const { amount, clientData, items, shippingFee } = await req.json();
     const apiKey = Deno.env.get('ROYAL_BANKING_API_KEY');
 
     if (!apiKey) {
@@ -45,9 +46,7 @@ serve(async (req) => {
 
     const response = await fetch(ROYAL_BANKING_API_URL, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(requestBody),
     });
 
@@ -63,10 +62,39 @@ serve(async (req) => {
     
     console.log('[create-pix-payment] Successfully created PIX payment:', responseData.idTransaction);
 
+    // Salvar o pedido no banco de dados
+    const supabaseAdmin = createClient(
+      Deno.env.get('SUPABASE_URL')!,
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    );
+
+    const orderPayload = {
+      items: items,
+      total_amount: amount,
+      shipping_fee: shippingFee,
+      transaction_id: responseData.idTransaction,
+      status: 'pending_payment'
+    };
+
+    const { data: newOrder, error: insertError } = await supabaseAdmin
+      .from('orders')
+      .insert(orderPayload)
+      .select('id')
+      .single();
+
+    if (insertError) {
+      console.error('[create-pix-payment] Error creating order in DB:', insertError);
+      return new Response(JSON.stringify({ error: 'Failed to save order.' }), {
+        status: 500,
+        headers: { ...corsHeaders, 'Content-Type': 'application/json' },
+      });
+    }
+
     return new Response(JSON.stringify({ 
       qrCodeBase64: responseData.qrCode,
       transactionId: responseData.idTransaction,
-      pixCopyPaste: responseData.paymentCode
+      pixCopyPaste: responseData.paymentCode,
+      orderId: newOrder.id,
     }), {
       headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       status: 200,
