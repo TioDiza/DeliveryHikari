@@ -165,94 +165,39 @@ export const MENU_ITEMS: MenuItem[] = [
     category: CategoryType.PIZZA,
     image: 'https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=800&auto=format=fit=crop'
   },
-  // JAPANESE
+  // JAPANESE - COMBINADOS
   {
-    id: 'j1',
-    name: 'Combo Chama (20 Peças)',
-    description: '10 Hot Rolls, 5 Sashimis de Salmão, 5 Uramakis Filadélfia.',
-    price: 89.90,
+    id: 'j20',
+    name: 'Combinado do Chef (25 Peças)',
+    description: 'Uma seleção especial do nosso sushiman com as melhores peças do dia.',
+    price: 99.90,
     category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1579871494447-9811cf80d66c?q=80&w=800&auto=format=fit=crop'
+    image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=800&auto=format=fit=crop'
   },
   {
-    id: 'j2',
-    name: 'Temaki Salmão Grelhado',
-    description: 'Salmão grelhado, cream cheese, cebolinha e gergelim.',
-    price: 38.00,
+    id: 'j21',
+    name: 'Combinado Salmão (40 Peças)',
+    description: 'Para os amantes de salmão. Sashimis, niguiris, uramakis e hossomakis.',
+    price: 149.90,
     category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1611143669185-af224c5e3252?q=80&w=800&auto=format=fit=crop'
+    image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=800&auto=format=fit=crop'
   },
   {
-    id: 'j3',
-    name: 'Sashimi Salmão (10 fatias)',
-    description: 'Fatias frescas de salmão premium, servidas com wasabi e shoyu.',
-    price: 45.00,
+    id: 'j22',
+    name: 'Combinado Super Chama (60 Peças)',
+    description: 'A experiência completa! Uma barca generosa com uma variedade incrível de sushis e sashimis.',
+    price: 219.90,
     category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1582450871972-ab5c6c1e5818?q=80&w=800&auto=format=fit=crop'
+    image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=800&auto=format=fit=crop',
+    badge: 'Para a Galera'
   },
   {
-    id: 'j4',
-    name: 'Yakisoba de Carne',
-    description: 'Macarrão frito com tiras de carne, legumes frescos e molho especial.',
-    price: 42.00,
+    id: 'j23',
+    name: 'Combinado Premium (80 Peças)',
+    description: 'O auge da culinária japonesa. Inclui peças com ovas, vieiras e iguarias selecionadas.',
+    price: 299.90,
     category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1585523381059-d12029348134?q=80&w=800&auto=format=fit=crop'
-  },
-  {
-    id: 'j5',
-    name: 'Hot Roll Especial (10 un)',
-    description: 'Sushi empanado e frito com salmão, cream cheese e um toque de teriyaki.',
-    price: 35.00,
-    category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1617196034183-421b4917c92d?q=80&w=800&auto=format=fit=crop'
-  },
-  {
-    id: 'j6',
-    name: 'Temaki Camarão Empanado',
-    description: 'Cone de alga com arroz, camarão empanado crocante, cream cheese e cebolinha.',
-    price: 40.00,
-    category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1625944022196-405a0e353657?q=80&w=800&auto=format=fit=crop'
-  },
-  {
-    id: 'j7',
-    name: 'Uramaki Califórnia (8 un)',
-    description: 'Manga, kani e pepino, enrolados com arroz por fora e gergelim.',
-    price: 30.00,
-    category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1615361200141-f45040f367be?q=80&w=800&auto=format=fit=crop'
-  },
-  {
-    id: 'j8',
-    name: 'Niguiri Salmão Maçaricado (4 un)',
-    description: 'Bolinho de arroz coberto com salmão levemente maçaricado e molho teriyaki.',
-    price: 28.00,
-    category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1621873495934-443551391302?q=80&w=800&auto=format=fit=crop'
-  },
-  {
-    id: 'j9',
-    name: 'Guioza Suína (6 un)',
-    description: 'Pastéis japoneses recheados com carne de porco e legumes, fritos ou no vapor.',
-    price: 25.00,
-    category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1629230124470-610d27cf3936?q=80&w=800&auto=format=fit=crop'
-  },
-  {
-    id: 'j10',
-    name: 'Sunomono',
-    description: 'Salada de pepino agridoce com gergelim.',
-    price: 15.00,
-    category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1553447859-51934012795b?q=80&w=800&auto=format=fit=crop'
-  },
-  {
-    id: 'j11',
-    name: 'Ceviche Nikkei',
-    description: 'Peixe branco marinado em molho cítrico com um toque de pimenta e coentro.',
-    price: 48.00,
-    category: CategoryType.JAPANESE,
-    image: 'https://images.unsplash.com/photo-1556035511-3168381ea4d4?q=80&w=800&auto=format=fit=crop'
+    image: 'https://images.unsplash.com/photo-1553621042-f6e147245754?q=80&w=800&auto=format=fit=crop'
   },
   // DRINKS
   {
