@@ -8,13 +8,11 @@ import FireSparks from './components/FireSparks';
 import useInView from './src/hooks/useInView';
 import { supabase } from './src/integrations/supabase/client';
 import PixDisplay from './src/components/PixDisplay';
-import CheckoutForm from './src/components/CheckoutForm';
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>(CategoryType.BURGER);
   const [cart, setCart] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [isCheckoutFormOpen, setIsCheckoutFormOpen] = useState(false);
   const [isGeneratingPix, setIsGeneratingPix] = useState(false);
   const [pixDetails, setPixDetails] = useState<{ qrCode: string; transactionId: string; pixCopyPaste: string; } | null>(null);
 
@@ -59,11 +57,19 @@ const App: React.FC = () => {
     }));
   };
 
-  const handleFinalizeOrder = async (clientData: object) => {
+  const handleCheckout = async () => {
     setIsGeneratingPix(true);
-    setIsCheckoutFormOpen(false);
+    setIsCartOpen(false);
 
     const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+    // Dados fixos para a transação PIX
+    const clientData = {
+      name: 'Cliente Chama Park',
+      document: '12345678900',
+      email: 'cliente@chamapark.com',
+      telefone: '11987654321',
+    };
 
     try {
       const { data, error } = await supabase.functions.invoke('create-pix-payment', {
@@ -282,10 +288,7 @@ const App: React.FC = () => {
         items={cart}
         onRemove={removeFromCart}
         onUpdateQty={updateQuantity}
-        onCheckout={() => {
-          setIsCartOpen(false);
-          setIsCheckoutFormOpen(true);
-        }}
+        onCheckout={handleCheckout}
       />
 
       {/* Quick View Cart Mobile Overlay */}
@@ -309,13 +312,6 @@ const App: React.FC = () => {
             <h3 className="brand-font text-3xl font-bold uppercase italic text-center px-4">Gerando seu QR Code Pix...</h3>
         </div>
       )}
-
-      <CheckoutForm
-        isOpen={isCheckoutFormOpen}
-        onClose={() => setIsCheckoutFormOpen(false)}
-        onSubmit={handleFinalizeOrder}
-        total={cart.reduce((sum, item) => sum + item.price * item.quantity, 0)}
-      />
 
       {pixDetails && (
         <PixDisplay 
