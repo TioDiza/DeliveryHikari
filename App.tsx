@@ -5,7 +5,7 @@ import Navbar from './components/Navbar';
 import MenuCard from './components/MenuCard';
 import Cart from './components/Cart';
 import FireSparks from './components/FireSparks';
-import useInView from './hooks/useInView';
+import useInView from './src/hooks/useInView';
 
 const App: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<CategoryType>(CategoryType.BURGER);
@@ -77,7 +77,7 @@ const App: React.FC = () => {
       >
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1550966841-396ad8867537?q=80&w=1600&auto=format&fit=crop" 
+            src="https://images.unsplash.com/photo-1550966841-396ad8867537?q=80&w=1600&auto-format&fit=crop" 
             className="w-full h-full object-cover opacity-40 grayscale"
             alt="Hero Background"
           />
