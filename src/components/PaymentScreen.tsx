@@ -25,20 +25,39 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
   const total = subtotal + shippingFee;
 
   useEffect(() => {
+    console.log(`[PaymentScreen] Configurando a inscrição para o orderId: ${orderId}`);
     const channel = supabase
       .channel(`order-status:${orderId}`)
       .on(
         'postgres_changes',
         { event: 'UPDATE', schema: 'public', table: 'orders', filter: `id=eq.${orderId}` },
         (payload) => {
-          if (payload.new.status) {
+          console.log('[PaymentScreen] Atualização em tempo real recebida!', payload);
+          if (payload.new && payload.new.status) {
+            console.log(`[PaymentScreen] Atualizando status para: ${payload.new.status}`);
             setOrderStatus(payload.new.status as OrderStatus);
+          } else {
+            console.warn('[PaymentScreen] Recebido payload de atualização sem novo status.', payload);
           }
         }
       )
-      .subscribe();
+      .subscribe((status, err) => {
+        if (status === 'SUBSCRIBED') {
+          console.log(`[PaymentScreen] Inscrito com sucesso no canal: order-status:${orderId}`);
+        }
+        if (status === 'CHANNEL_ERROR') {
+          console.error(`[PaymentScreen] Erro de inscrição no canal order-status:${orderId}`, err);
+        }
+        if (status === 'TIMED_OUT') {
+          console.warn(`[PaymentScreen] Tempo de inscrição esgotado para o canal order-status:${orderId}`);
+        }
+        if (status === 'CLOSED') {
+          console.log(`[PaymentScreen] Inscrição fechada para o canal order-status:${orderId}`);
+        }
+      });
 
     return () => {
+      console.log(`[PaymentScreen] Limpando a inscrição para o orderId: ${orderId}`);
       supabase.removeChannel(channel);
     };
   }, [orderId]);
