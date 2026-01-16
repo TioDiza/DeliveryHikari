@@ -123,7 +123,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Molho de tomate, mussarela de búfala, manjericão fresco e um fio de azeite.',
     price: 55.00,
     category: CategoryType.PIZZA,
-    image: 'https://images.unsplash.com/photo-1598021680942-850a003c520f?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1595854337175-79a6a0e389c4?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'p4',
@@ -139,7 +139,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Frango desfiado temperado coberto com o autêntico requeijão Catupiry.',
     price: 62.00,
     category: CategoryType.PIZZA,
-    image: 'https://images.unsplash.com/photo-1620374645498-af6bd680a273?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1627461979409-632070635b9a?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'p6',
@@ -179,7 +179,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Mussarela, pancetta, ovos, queijo pecorino e pimenta do reino moída na hora.',
     price: 70.00,
     category: CategoryType.PIZZA,
-    image: 'https://images.unsplash.com/photo-1528137871618-6ca50365e49e?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1585238342024-78d387f4a707?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'p11',
@@ -187,7 +187,7 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Camarões salteados no alho e óleo, mussarela, catupiry e cheiro-verde.',
     price: 82.00,
     category: CategoryType.PIZZA,
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983d34?q=80&w=800&auto=format&fit=crop'
+    image: 'https://images.unsplash.com/photo-1566843972142-a7e67e6346a2?q=80&w=800&auto=format&fit=crop'
   },
   {
     id: 'p12',
