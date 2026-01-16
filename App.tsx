@@ -68,7 +68,10 @@ const App: React.FC = () => {
       />
 
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center pt-20 overflow-hidden">
+      <section 
+        className="relative h-[80vh] flex items-center justify-center pt-20 overflow-hidden animate-on-load"
+        style={{ animationDelay: '0.1s' }}
+      >
         <div className="absolute inset-0 z-0">
           <img 
             src="https://images.unsplash.com/photo-1550966841-396ad8867537?q=80&w=1600&auto=format&fit=crop" 
@@ -108,7 +111,10 @@ const App: React.FC = () => {
       </section>
 
       {/* Stats/Badges */}
-      <div className="bg-chama-orange py-6 overflow-hidden">
+      <div 
+        className="bg-chama-orange py-6 overflow-hidden animate-on-load"
+        style={{ animationDelay: '0.3s' }}
+      >
         <div className="flex animate-scroll-left">
           {[...stats, ...stats].map((stat, index) => (
             <div key={index} className="flex-shrink-0 flex items-center justify-center gap-3 text-white brand-font font-bold uppercase italic px-12">
@@ -120,7 +126,11 @@ const App: React.FC = () => {
       </div>
 
       {/* Menu Section */}
-      <section id="menu" className="py-24 px-4 max-w-7xl mx-auto">
+      <section 
+        id="menu" 
+        className="py-24 px-4 max-w-7xl mx-auto animate-on-load"
+        style={{ animationDelay: '0.5s' }}
+      >
         <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
           <div>
             <h2 className="brand-font text-4xl md:text-5xl font-bold uppercase mb-2">Nosso Cardápio</h2>
@@ -152,12 +162,16 @@ const App: React.FC = () => {
       </section>
 
       {/* CTA Section / About */}
-      <section id="sobre" className="bg-[#111] py-24 px-4 overflow-hidden relative">
+      <section 
+        id="sobre" 
+        className="bg-[#111] py-24 px-4 overflow-hidden relative animate-on-load"
+        style={{ animationDelay: '0.7s' }}
+      >
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-16">
           <div className="relative">
             <div className="bg-chama-orange absolute -top-4 -left-4 w-24 h-24 rounded-full opacity-20 blur-3xl"></div>
             <img 
-              src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=800&auto=format=fit=crop" 
               className="rounded-3xl relative z-10 shadow-2xl grayscale hover:grayscale-0 transition-all duration-700"
               alt="Sobre a Chama"
             />
@@ -190,7 +204,10 @@ const App: React.FC = () => {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black py-16 px-4">
+      <footer 
+        className="bg-black py-16 px-4 animate-on-load"
+        style={{ animationDelay: '0.9s' }}
+      >
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/5 pb-12">
             <div className="col-span-1 md:col-span-2">
                 <div className="flex items-center gap-2 mb-6">
