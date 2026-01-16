@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { CartItem } from '../types';
+import { SHIPPING_FEE } from '../constants';
 
 interface CartProps {
   isOpen: boolean;
@@ -12,7 +12,8 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ isOpen, onClose, items, onRemove, onUpdateQty, onCheckout }) => {
-  const total = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = subtotal + SHIPPING_FEE;
 
   return (
     <div className={`fixed inset-0 z-[100] transition-opacity duration-300 ${isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
@@ -57,9 +58,20 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, items, onRemove, onUpdateQ
 
         {items.length > 0 && (
           <div className="p-6 bg-white/5 border-t border-white/10">
-            <div className="flex justify-between items-center mb-6">
-              <span className="text-gray-400">Total do pedido</span>
-              <span className="text-2xl font-bold brand-font">R$ {total.toFixed(2).replace('.', ',')}</span>
+            <div className="space-y-2 mb-6">
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-gray-400">Subtotal</span>
+                <span className="font-bold text-white">R$ {subtotal.toFixed(2).replace('.', ',')}</span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-gray-400">Taxa de Entrega</span>
+                <span className="font-bold text-white">R$ {SHIPPING_FEE.toFixed(2).replace('.', ',')}</span>
+              </div>
+              <div className="border-t border-white/10 my-2"></div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-200 font-bold">Total do pedido</span>
+                <span className="text-2xl font-bold brand-font text-chama-orange">R$ {total.toFixed(2).replace('.', ',')}</span>
+              </div>
             </div>
             <button 
               onClick={onCheckout}

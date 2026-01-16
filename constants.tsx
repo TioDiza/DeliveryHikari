@@ -1,5 +1,7 @@
 import { MenuItem, CategoryType } from './types';
 
+export const SHIPPING_FEE = 23.49;
+
 export const MENU_ITEMS: MenuItem[] = [
   // HAMBURGUERES
   {

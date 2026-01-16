@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { CartItem } from '../types';
 import QRCode from 'qrcode';
+import { SHIPPING_FEE } from '../constants';
 
 interface PaymentScreenProps {
   orderItems: CartItem[];
@@ -15,16 +16,15 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
   const [copied, setCopied] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState<string | null>(null);
 
-  const total = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = subtotal + SHIPPING_FEE;
 
   useEffect(() => {
-    // Prioriza o QR Code vindo da API
     if (pixDetails.qrCodeBase64) {
       setQrCodeUrl(`data:image/png;base64,${pixDetails.qrCodeBase64}`);
       return;
     }
 
-    // Se a API falhar, gera um QR Code localmente com o "Copia e Cola"
     if (pixDetails.pixCopyPaste) {
       QRCode.toDataURL(pixDetails.pixCopyPaste, {
         errorCorrectionLevel: 'H',
@@ -36,7 +36,7 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
         })
         .catch(err => {
           console.error('Falha ao gerar QR Code localmente:', err);
-          setQrCodeUrl(null); // Mostra erro se a geração local também falhar
+          setQrCodeUrl(null);
         });
     } else {
       setQrCodeUrl(null);
@@ -63,7 +63,7 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
             <p className="text-gray-400 text-sm">Pague com PIX para confirmar seu pedido.</p>
         </div>
 
-        <div className="bg-black/20 rounded-lg p-4 mb-6 max-h-40 overflow-y-auto">
+        <div className="bg-black/20 rounded-lg p-4 mb-6 max-h-56 overflow-y-auto">
             <h3 className="font-bold text-gray-300 mb-3 text-xs uppercase tracking-wider">Resumo do Pedido</h3>
             <div className="space-y-2">
                 {orderItems.map(item => (
@@ -73,9 +73,19 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
                     </div>
                 ))}
             </div>
-            <div className="border-t border-white/10 mt-3 pt-3 flex justify-between items-center font-bold">
-                <span className="text-gray-300">Total</span>
-                <span className="text-lg text-chama-orange brand-font">R$ {total.toFixed(2)}</span>
+            <div className="border-t border-white/10 mt-3 pt-3 space-y-2">
+              <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-300">Subtotal</span>
+                  <span className="font-semibold text-white">R$ {subtotal.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                  <span className="text-gray-300">Taxa de Entrega</span>
+                  <span className="font-semibold text-white">R$ {SHIPPING_FEE.toFixed(2)}</span>
+              </div>
+              <div className="flex justify-between items-center font-bold mt-2">
+                  <span className="text-gray-300">Total</span>
+                  <span className="text-lg text-chama-orange brand-font">R$ {total.toFixed(2)}</span>
+              </div>
             </div>
         </div>
 

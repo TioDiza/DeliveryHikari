@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { CategoryType, MenuItem, CartItem } from './types';
-import { MENU_ITEMS } from './constants';
+import { MENU_ITEMS, SHIPPING_FEE } from './constants';
 import Navbar from './components/Navbar';
 import MenuCard from './components/MenuCard';
 import Cart from './components/Cart';
@@ -70,7 +70,8 @@ const App: React.FC = () => {
     setIsGeneratingPix(true);
     setIsCartOpen(false);
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = subtotal + SHIPPING_FEE;
 
     const clientData = {
       name: 'Cliente Chama Park',
@@ -102,6 +103,9 @@ const App: React.FC = () => {
   const closePaymentScreen = () => {
     setConfirmedOrder(null);
   };
+
+  const cartSubtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+  const cartTotal = cartSubtotal > 0 ? cartSubtotal + SHIPPING_FEE : 0;
 
   return (
     <div className="min-h-screen bg-chama-black overflow-x-hidden">
@@ -307,7 +311,7 @@ const App: React.FC = () => {
             className="w-full bg-chama-orange text-white py-4 rounded-2xl font-bold flex justify-between px-6 shadow-2xl shadow-chama-orange/40 animate-bounce"
           >
             <span>Ver Carrinho ({cart.reduce((s, i) => s + i.quantity, 0)})</span>
-            <span>R$ {cart.reduce((s, i) => s + i.price * i.quantity, 0).toFixed(2)}</span>
+            <span>R$ {cartTotal.toFixed(2)}</span>
           </button>
         </div>
       )}
