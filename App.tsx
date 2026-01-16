@@ -12,7 +12,7 @@ import PaymentScreen from './src/components/PaymentScreen';
 interface ConfirmedOrder {
   items: CartItem[];
   pix: {
-    qrCode: string;
+    qrCodeBase64: string;
     transactionId: string;
     pixCopyPaste: string;
   };
@@ -325,7 +325,7 @@ const App: React.FC = () => {
         <PaymentScreen
           orderItems={confirmedOrder.items}
           pixDetails={{
-            qrCodeBase64: confirmedOrder.pix.qrCode,
+            qrCodeBase64: confirmedOrder.pix.qrCodeBase64,
             pixCopyPaste: confirmedOrder.pix.pixCopyPaste,
           }}
           onClose={closePaymentScreen}

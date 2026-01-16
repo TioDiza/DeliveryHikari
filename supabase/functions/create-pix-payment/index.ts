@@ -64,7 +64,7 @@ serve(async (req) => {
     console.log('[create-pix-payment] Successfully created PIX payment:', responseData.idTransaction);
 
     return new Response(JSON.stringify({ 
-      qrCode: responseData.qrCode,
+      qrCodeBase64: responseData.qrCode,
       transactionId: responseData.idTransaction,
       pixCopyPaste: responseData.paymentCode
     }), {
