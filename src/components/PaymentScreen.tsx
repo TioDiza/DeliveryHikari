@@ -53,11 +53,18 @@ const PaymentScreen: React.FC<PaymentScreenProps> = ({ orderItems, pixDetails, o
 
         <div className="text-center">
             <div className="p-2 bg-white rounded-lg inline-block">
-              <img 
-                src={`data:image/png;base64,${pixDetails.qrCodeBase64}`} 
-                alt="PIX QR Code"
-                className="w-48 h-48"
-              />
+              {pixDetails.qrCodeBase64 ? (
+                <img 
+                  src={`data:image/png;base64,${pixDetails.qrCodeBase64}`} 
+                  alt="PIX QR Code"
+                  className="w-48 h-48"
+                />
+              ) : (
+                <div className="w-48 h-48 bg-gray-200 flex flex-col items-center justify-center rounded-md text-center">
+                    <i className="fa-solid fa-qrcode text-4xl text-gray-500 mb-2"></i>
+                    <p className="text-xs text-gray-600 font-bold px-2">Erro ao carregar o QR Code</p>
+                </div>
+              )}
             </div>
             
             <div className="mt-6">
