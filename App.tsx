@@ -6,7 +6,7 @@ import MenuCard from './components/MenuCard';
 import Cart from './components/Cart';
 import FireSparks from './components/FireSparks';
 import useInView from './src/hooks/useInView';
-import { supabase } from './integrations/supabase/client';
+import { supabase } from './src/integrations/supabase/client';
 import PixDisplay from './src/components/PixDisplay';
 
 const App: React.FC = () => {
