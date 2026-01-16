@@ -2,7 +2,7 @@ import { CartItem } from '../../types';
 import { SHIPPING_FEE } from '../../constants';
 
 // IDs dos produtos que podem ter frete grátis se estiverem sozinhos no carrinho
-const FREE_SHIPPING_ITEM_IDS = ['d3', 'd4', 'd5', 'd6', 'd7'];
+const FREE_SHIPPING_ITEM_IDS: string[] = [];
 
 export const calculateShippingFee = (cart: CartItem[]): number => {
   if (cart.length === 0) {
